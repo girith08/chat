@@ -1,0 +1,55 @@
+<% content_for :title, 'general | Kabel' %>
+<div class="header">
+  <div class="team-menu">Kabel</div>
+  <div class="channel-menu">
+    <span class="channel-menu_name"><span class="channel-menu_prefix">#</span> general</span>
+  </div>
+</div>
+<div class="main">
+  <div class="listings">
+    <div class="listings_channels">
+      <h2 class="listings_header">Channels</h2>
+      <% if user_signed_in? %>
+      <ul>
+        <% current_user.chatrooms.public_channels.each do |chatroom| %>
+        <% if chatroom.id.to_s == params[:id].to_s %>
+        <li class="channel active">
+          <%= link_to chatroom.name, chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id} %>
+        </li>
+        <% else %>
+        <li><%= link_to chatroom.name, chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id} %></li>
+        <% end %>
+        <% end %>
+      </ul>
+      <br>
+      <h2 class="listings_header">Users</h2>
+      <ul>
+        <% (User.all - [current_user]).each do |user| %>
+        <% if user.id.to_s == params[:id].to_s %>
+        <li class="channel active">
+          <%= link_to user.email, direct_message_path(user.id), data: {behavior: "chatroom-link", chatroom_id: Chatroom.direct_chat([current_user, user]).id } %>
+        </li>
+        <% else %>
+        <li><%= link_to user.email, direct_message_path(user.id), data: {behavior: "chatroom-link", chatroom_id: Chatroom.direct_chat([current_user, user]).id } %></li>
+        <% end %>
+        <% end %>
+      </ul>
+      <% end %>
+    </div>
+  </div>
+  <div class="message-history" id="messages" data-behavior='messages' data-chatroom-id='<%= @chatroom.id %>'>
+    <%= render @messages %>
+  </div>
+</div>
+<div class="footer">
+  <div class="user-menu">
+    <span class="user-menu_profile-pic"></span><span class="user-menu_username"><%= current_user.email %></span>
+    <span class="connection_status">online</span>
+    <span class="logout"><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></span>
+  </div>
+  <div class="input-box">
+    <%= form_for [@chatroom, Message.new] do |f| %>
+    <%= f.text_area :content, rows: 2, cols: 200, class: "form-control", id: "message_input", autofocus: true %>
+    <% end %>
+  </div>
+</div>

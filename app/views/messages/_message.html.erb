@@ -1,9 +1,6 @@
 <div class="message">
   <a href="" class="message_profile-pic"></a>
-  <a href="" class="message_username"><%= message.user.email %></a>
-  <span class="message_timestamp">
-    <%= message.created_at %>
-  </span>
+  <a href="" class="message_username"><strong><%= message.user.email %></strong></a>
   <span class="message_star"></span>
   <span class="message_content">
     <%= message.content %>

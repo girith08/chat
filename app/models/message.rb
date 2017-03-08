@@ -1,4 +1,6 @@
 class Message < ApplicationRecord
+  belongs_to :chatroom
   belongs_to :user
-  after_create_commit { BroadcastMessageJob.perform_later self  }
+  
+  scope :recent_messages, -> { order(created_at: :desc).limit(100).reverse }
 end

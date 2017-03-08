@@ -9,6 +9,7 @@ module ApplicationCable
     end
 
     protected
+
     def find_verified_user
       if (current_user = User.find_by_id cookies.signed['user.id'])
         current_user
@@ -16,6 +17,5 @@ module ApplicationCable
         reject_unauthorized_connection
       end
     end
-
   end
 end
