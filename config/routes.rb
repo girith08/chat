@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :direct_messages
+  resources :private_chatrooms
 
   root to: 'chatrooms#index'
 end

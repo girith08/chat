@@ -150,17 +150,13 @@ main {
 	width: 100%;
 }
 
-.team-menu {
+.top {
 	position: relative;
 	width: 220px;
 	height: 53px;
 	line-height: 53px;
 	font-weight: 900;
 	font-size: 50px;
-	padding: 0 1rem;
-	color: black;
-	background: #DCDCDC;
-	border-bottom: 2px solid #372c36;
 	float: left;
 	cursor: pointer;
 }
@@ -176,7 +172,7 @@ main {
 }
 
 .channel-menu_prefix {
-	color: #9e9ea6;
+	color: black;
 	padding-right: 0.1rem;
 	font-weight: 500;
 }
@@ -189,6 +185,28 @@ main {
 	background-color: ivory;
 	overflow-y: auto;
 	overflow-x: hidden;
+}
+
+.new_private_chatroom {
+	text-align: center;
+	font-size: 20px;
+	letter-spacing: -0.05em;
+	border-top-right-radius: 0.25rem;
+	border-bottom-right-radius: 0.25rem;
+	border-top-left-radius: 0.25rem;
+	border-bottom-left-radius: 0.25rem;
+	background: #DCDCDC;
+	padding: 10px;
+	margin: 10px;
+}
+
+.new_private_chatroom:hover {
+	background: #eaeaea;
+}
+
+a {
+	text-decoration: none;
+	color: black;
 }
 
 .message-history {
@@ -383,4 +401,136 @@ main {
 	bottom: 0;
 	min-height: 41px !important;
 	padding: 9px 5px 9px 8px;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	position: relative;
+	background: #bfc2c2;
+	position: relative;
+}
+
+nav {
+	width: 100%;
+	height: 65px;
+	position: relative;
+	background: #0a4b33;
+	box-shadow: 0px 2px 8px 0px #333;
+}
+
+.nav-container {
+	width: 1000px;
+	margin: 0 auto;
+	position: relative;
+	background: #0a4b33;
+}
+
+.nav-container>.logo {
+	width: 200px;
+	height: 65px;
+	float: left;
+}
+
+.menu {
+	width: 100%;
+	height: 65px;
+	background: #4c9689;
+	border-bottom-right-radius: 0.5rem;
+	border-top-left-radius: 0.5rem;
+	border-bottom-left-radius: 0.5rem;
+	border-top-right-radius: 0.5rem;
+}
+
+.menu>.menu-content {
+	width: 200px;
+	height: 65px;
+	float: right;
+	font-family: sans-serif, Arial;
+	font-size: 20px;
+	font-weight: bold;
+	letter-spacing: -0.05em;
+	position: relative;
+	color: #fff;
+	line-height: 65px;
+}
+
+.menu>.menu-content>a {
+	color: #fff;
+	text-decoration: none;
+}
+
+.arrow-up {
+	width: 0;
+	height: 0;
+	position: absolute;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-bottom: 20px solid #fff;
+	right: 151px;
+	top: 50px;
+	display: none;
+}
+
+.login-form {
+	position: absolute;
+	width: 300px;
+	height: auto;
+	background: #fff;
+	right: 58px;
+	top: 60px;
+	border-radius: 3px;
+	border-bottom: 5px solid gray;
+	display: none;
+}
+
+.login-form>form {
+	width: 250px;
+	margin: 25px auto;
+	font-size: 20px;
+	font-family: sans-serif, Arial;
+	color: gray;
+	letter-spacing: -0.05em;
+}
+
+input[type="text"][name="chatroom[name]"] {
+	width: 240px;
+	height: 30px;
+	border: 0px;
+	outline: none;
+	box-shadow: inset 0 0 10px #eee;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	margin-top: 5px;
+	font-family: sans-serif, Arial;
+	font-size: 16px;
+}
+
+.checkboxes {
+	word-spacing: 50px;
+	margin: 10px;
+}
+
+input[type="submit"][value="Update Chatroom"] {
+	margin: 10px;
+	width: 95%;
+	height: 35px;
+	background: #0b8256;
+	font-size: 16px;
+	font-weight: bold;
+	font-family: sans-serif, Arial;
+	color: white;
+	outline: none;
+	border: 0px;
+	border-radius: 3px;
+	letter-spacing: -0.05em;
+	cursor: pointer;
+}
+
+input[type="submit"][value="Update Chatroom"]:hover {
+	background: #0a4b33;
+}
+
+.fa {
+	margin-right: 5px;
 }

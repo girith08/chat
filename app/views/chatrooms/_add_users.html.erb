@@ -1,0 +1,35 @@
+<aside class="menu">
+  <div class="menu-content">
+    <i class="fa fa-unlock-alt"></i><a href="#" id="login">Add users</a>
+  </div>
+  <div class="arrow-up"></div>
+</aside>
+<div class="login-form">
+  <%= form_for(@chatroom) do |f| %>
+  <% if @chatroom.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@chatroom.errors.count, "error") %> prohibited this chatroom from being saved:</h2>
+    <ul>
+      <% @chatroom.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.select :visibility, [["Public", "public"], ["Private", "private"]], {}, {class: "form-control"} %>
+  </div>
+  <div class="checkboxes">
+    <% (User.all - @chatroom.users | @chatroom.users - User.all).each do |user| %>
+    <%= check_box_tag 'user_ids[]', user.id %>
+    <%= user.email %>
+    <% end %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <% end %>
+</div>
+</section>

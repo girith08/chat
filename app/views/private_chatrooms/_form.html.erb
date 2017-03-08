@@ -12,8 +12,12 @@
 <div class="field">
   <%= f.label :name %>
   <%= f.text_field :name %>
+  <%= f.select :visibility, [["Public", "public"], ["Private", "private"]], {}, {class: "form-control"} %>
 </div>
-
+<% (User.all - [current_user]).each do |user| %>
+<%= check_box_tag 'user_ids[]', user.id %>
+<%= user.email %>
+<% end %>
 <div class="actions">
   <%= f.submit %>
 </div>

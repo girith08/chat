@@ -26,8 +26,15 @@ class ChatroomsController < ApplicationController
   # POST /chatrooms
   # POST /chatrooms.json
   def create
-    @chatroom = Chatroom.new(chatroom_params)
-
+    if params[:visibility] == 'private'
+      users = []
+      users = params[:user_ids].map { |id| User.find(id) } if params[:user_ids]
+      users << current_user
+      name = params[:chatroom][:name]
+      @chatroom = Chatroom.private_chat(users, name)
+    else
+      @chatroom = Chatroom.new(chatroom_params)
+    end
     respond_to do |format|
       if @chatroom.save && current_user
         @chatroom.chatroom_users.where(user_id: current_user.id).first_or_create
@@ -43,6 +50,15 @@ class ChatroomsController < ApplicationController
   # PATCH/PUT /chatrooms/1
   # PATCH/PUT /chatrooms/1.json
   def update
+    if params[:visibility] = 'private'
+      users = []
+      users = params[:user_ids].map { |id| User.find(id) } if params[:user_ids]
+      name = params[:chatroom][:name]
+      @chatroom.update(chatroom_params)
+      @chatroom = Chatroom.private_chat(users, name)
+    else
+      @chatroom.update(chatroom_params)
+    end
     respond_to do |format|
       if @chatroom.update(chatroom_params)
         format.html { redirect_to @chatroom, notice: 'Chatroom was successfully updated.' }
@@ -71,6 +87,6 @@ class ChatroomsController < ApplicationController
   end
 
   def chatroom_params
-    params.require(:chatroom).permit(:name)
+    params.require(:chatroom).permit(:name, :visibility)
   end
 end
