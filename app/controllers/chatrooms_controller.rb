@@ -26,7 +26,7 @@ class ChatroomsController < ApplicationController
   # POST /chatrooms
   # POST /chatrooms.json
   def create
-    if params[:visibility] == 'private'
+    if params[:chatroom][:visibility] == 'private'
       users = []
       users = params[:user_ids].map { |id| User.find(id) } if params[:user_ids]
       users << current_user
@@ -50,7 +50,7 @@ class ChatroomsController < ApplicationController
   # PATCH/PUT /chatrooms/1
   # PATCH/PUT /chatrooms/1.json
   def update
-    if params[:visibility] = 'private'
+    if params[:chatroom][:visibility] = 'private'
       users = []
       users = params[:user_ids].map { |id| User.find(id) } if params[:user_ids]
       name = params[:chatroom][:name]
